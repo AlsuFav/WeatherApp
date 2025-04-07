@@ -21,6 +21,7 @@ fun WeatherScreen(
     isLoading: Boolean,
     errorMessage: String?,
     currentCity: String,
+    units: String,
     onSearchClick: (String) -> Unit
 ) {
     var cityInput by remember { mutableStateOf(currentCity) }
@@ -73,7 +74,10 @@ fun WeatherScreen(
                 }
             }
             weatherData != null -> {
-                WeatherDisplay(weatherData = weatherData)
+                WeatherDisplay(
+                    weatherData = weatherData,
+                    units = units
+                )
             }
         }
     }
@@ -81,7 +85,8 @@ fun WeatherScreen(
 
 @Composable
 fun WeatherDisplay(
-    weatherData: WeatherModel
+    weatherData: WeatherModel,
+    units: String
 ) {
     Column(
         modifier = Modifier
@@ -90,15 +95,27 @@ fun WeatherDisplay(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val tempUnit = when(units) {
+            "metric" -> "°C"
+            "imperial" -> "°F"
+            else -> "K"
+        }
+
+        val windUnit = when(units) {
+            "metric" -> "м/с"
+            "imperial" -> "миль/ч"
+            else -> "м/с"
+        }
+
         WeatherInfoItem(
             label = "Температура",
-            value = "${weatherData.currentTemp}°C",
+            value = "${weatherData.currentTemp}$tempUnit",
             iconRes = R.drawable.ic_temp
         )
 
         WeatherInfoItem(
             label = "Скорость ветра",
-            value = "${weatherData.windSpeed} м/с",
+            value = "${weatherData.windSpeed} $windUnit",
             iconRes = R.drawable.ic_wind
         )
     }

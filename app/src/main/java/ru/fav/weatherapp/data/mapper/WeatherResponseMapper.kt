@@ -2,8 +2,9 @@ package ru.fav.weatherapp.data.mapper
 
 import ru.fav.weatherapp.data.remote.pojo.CurrentWeatherResponse
 import ru.fav.weatherapp.domain.model.WeatherModel
+import javax.inject.Inject
 
-class WeatherResponseMapper {
+class WeatherResponseMapper @Inject constructor() {
 
     fun map(input: CurrentWeatherResponse?): WeatherModel {
         return input?.let {

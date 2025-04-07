@@ -8,7 +8,8 @@ interface OpenWeatherApi {
 
     @GET("weather")
     suspend fun getCurrentWeatherByCityName(
-        @Query("q") city: String
+        @Query("q") city: String,
+        @Query("units") units: String
     ): CurrentWeatherResponse?
 
 }

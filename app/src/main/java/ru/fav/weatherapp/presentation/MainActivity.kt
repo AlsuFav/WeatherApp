@@ -6,6 +6,7 @@ import ru.fav.weatherapp.presentation.base.BaseActivity
 import ru.fav.weatherapp.presentation.base.NavigationAction
 import ru.fav.weatherapp.databinding.ActivityMainBinding
 import ru.fav.weatherapp.presentation.screens.CurrentTempFragment
+import ru.fav.weatherapp.utils.appComponent
 
 class MainActivity : BaseActivity() {
 
@@ -15,6 +16,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appComponent().inject(activity = this)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding?.root)
 
