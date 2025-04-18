@@ -6,8 +6,9 @@ import dagger.Component
 import ru.fav.weatherapp.di.module.BinderModule
 import ru.fav.weatherapp.di.module.DataModule
 import ru.fav.weatherapp.di.module.DomainModule
+import ru.fav.weatherapp.di.module.PresentationModule
 import ru.fav.weatherapp.presentation.MainActivity
-import ru.fav.weatherapp.presentation.screens.CurrentTempFragment
+import ru.fav.weatherapp.presentation.screens.currentTemp.CurrentTempFragment
 import javax.inject.Singleton
 
 @Component(
@@ -15,6 +16,7 @@ import javax.inject.Singleton
         DataModule::class,
         DomainModule::class,
         BinderModule::class,
+        PresentationModule::class
     ]
 )
 @Singleton

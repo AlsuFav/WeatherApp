@@ -9,6 +9,7 @@ class AppIdInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val url = chain.request().url.newBuilder()
             .addQueryParameter("appid", BuildConfig.openWeatherApiKey)
+            .addQueryParameter("lang", "ru")
 
         val request = chain.request().newBuilder().url(url.build())
 

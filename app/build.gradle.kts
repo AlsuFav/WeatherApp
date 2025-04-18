@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
@@ -66,6 +67,7 @@ dependencies {
     implementation(libs.bundles.compose.base)
     implementation(libs.compose.lifecycle)
     implementation(libs.compose.icons.extended)
+    implementation(libs.coroutines.android)
 
     implementation (libs.retrofit)
     implementation(libs.retrofit.gson.converter)

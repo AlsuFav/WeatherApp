@@ -1,4 +1,4 @@
-package ru.fav.weatherapp.presentation.screens.ui
+package ru.fav.weatherapp.presentation.screens.currentTemp
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,7 +39,7 @@ fun WeatherScreen(
             OutlinedTextField(
                 value = cityInput,
                 onValueChange = { cityInput = it },
-                label = { Text("Введите город") },
+                label = { Text(stringResource(R.string.enter_city)) },
                 modifier = Modifier.weight(1f),
                 singleLine = true
             )
@@ -47,7 +48,7 @@ fun WeatherScreen(
                 onClick = { onSearchClick(cityInput.trim()) },
                 modifier = Modifier.padding(start = 8.dp)
             ) {
-                Icon(Icons.Default.Search, contentDescription = "Поиск")
+                Icon(Icons.Default.Search, contentDescription = stringResource(R.string.search))
             }
         }
 
@@ -98,26 +99,50 @@ fun WeatherDisplay(
         val tempUnit = when(units) {
             "metric" -> "°C"
             "imperial" -> "°F"
-            else -> "K"
+            else -> "°K"
         }
 
         val windUnit = when(units) {
-            "metric" -> "м/с"
-            "imperial" -> "миль/ч"
-            else -> "м/с"
+            "metric" -> stringResource(R.string.metric_wind_unit)
+            "imperial" -> stringResource(R.string.imperial_wind_unit)
+            else -> stringResource(R.string.metric_wind_unit)
         }
 
         WeatherInfoItem(
-            label = "Температура",
+            label = stringResource(R.string.temperature),
             value = "${weatherData.currentTemp}$tempUnit",
             iconRes = R.drawable.ic_temp
         )
 
         WeatherInfoItem(
-            label = "Скорость ветра",
+            label = stringResource(R.string.wind_speed),
             value = "${weatherData.windSpeed} $windUnit",
             iconRes = R.drawable.ic_wind
         )
+
+        WeatherInfoItem(
+            label = stringResource(R.string.humidity),
+            value = "${weatherData.humidity}%",
+            iconRes = R.drawable.ic_humidity
+        )
+
+        WeatherInfoItem(
+            label = stringResource(R.string.description),
+            value = weatherData.description,
+            iconRes = R.drawable.ic_description
+        )
+
+//        WeatherInfoItem(
+//            label = "Рассвет",
+//            value = formatTime(weatherData.sunrise),
+//            iconRes = R.drawable.ic_sunrise
+//        )
+//
+//        WeatherInfoItem(
+//            label = "Закат",
+//            value = formatTime(weatherData.sunset),
+//            iconRes = R.drawable.ic_sunset
+//        )
     }
 }
 

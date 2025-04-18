@@ -5,7 +5,7 @@ import ru.fav.weatherapp.R
 import ru.fav.weatherapp.presentation.base.BaseActivity
 import ru.fav.weatherapp.presentation.base.NavigationAction
 import ru.fav.weatherapp.databinding.ActivityMainBinding
-import ru.fav.weatherapp.presentation.screens.CurrentTempFragment
+import ru.fav.weatherapp.presentation.screens.currentTemp.CurrentTempFragment
 import ru.fav.weatherapp.utils.appComponent
 
 class MainActivity : BaseActivity() {
