@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.stringResource
 import ru.fav.weatherapp.R
 import ru.fav.weatherapp.presentation.base.BaseFragment
 import ru.fav.weatherapp.databinding.FragmentCurrentTempBinding
@@ -70,7 +71,7 @@ private fun WeatherScreenWithViewModel(viewModel: CurrentTempViewModel) {
     WeatherScreen(
         weatherData = currentWeather,
         isLoading = isLoading,
-        errorMessage = if (error) "Ошибка загрузки" else null,
+        errorMessage = if (error) stringResource(R.string.network_error) else null,
         currentCity = cityInput,
         units = units,
         onSearchClick = { city ->

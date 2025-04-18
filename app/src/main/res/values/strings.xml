@@ -10,4 +10,5 @@
     <string name="description">Описание</string>
     <string name="metric_wind_unit">м/с</string>
     <string name="imperial_wind_unit">миль/ч</string>
+    <string name="network_error">Ошибка загрузки</string>
 </resources>
