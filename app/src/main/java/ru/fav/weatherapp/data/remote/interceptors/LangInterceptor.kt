@@ -5,10 +5,10 @@ import okhttp3.Response
 import ru.fav.weatherapp.BuildConfig
 import javax.inject.Inject
 
-class AppIdInterceptor @Inject constructor() : Interceptor {
+class LangInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val url = chain.request().url.newBuilder()
-            .addQueryParameter("appid", BuildConfig.openWeatherApiKey)
+            .addQueryParameter("lang", "ru")
 
         val request = chain.request().newBuilder().url(url.build())
 
