@@ -2,6 +2,7 @@ package ru.fav.weatherapp.presentation.screens.currentTemp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -10,6 +11,7 @@ import ru.fav.weatherapp.domain.usecase.GetTemperatureUnitUseCase
 import ru.fav.weatherapp.domain.usecase.GetWeatherByCityNameUseCase
 import javax.inject.Inject
 
+@HiltViewModel
 class CurrentTempViewModel @Inject constructor(
     private val getWeatherByCityNameUseCase: GetWeatherByCityNameUseCase,
     private val getUnitsUseCase: GetTemperatureUnitUseCase

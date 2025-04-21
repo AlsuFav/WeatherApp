@@ -13,17 +13,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import ru.fav.weatherapp.App
-import ru.fav.weatherapp.di.components.AppComponent
 import java.util.Locale
 import kotlinx.coroutines.flow.Flow
 import ru.fav.weatherapp.presentation.MainActivity
 
-fun Context.appComponent(): AppComponent {
-    return when(this) {
-        is App -> appComponent
-        else -> (this.applicationContext as App).appComponent()
-    }
-}
 
 fun Locale.usesMetricSystem(): Boolean {
     return when (this.country.uppercase()) {

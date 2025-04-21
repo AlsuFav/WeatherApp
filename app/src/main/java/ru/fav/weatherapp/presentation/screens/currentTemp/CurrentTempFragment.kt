@@ -16,25 +16,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ru.fav.weatherapp.R
 import ru.fav.weatherapp.presentation.base.BaseFragment
 import ru.fav.weatherapp.databinding.FragmentCurrentTempBinding
-import ru.fav.weatherapp.utils.appComponent
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class CurrentTempFragment : BaseFragment(R.layout.fragment_current_temp) {
     private var viewBinding: FragmentCurrentTempBinding? = null
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: CurrentTempViewModel
-
-    override fun onAttach(context: Context) {
-        requireContext().appComponent().inject(fragment = this)
-        super.onAttach(context)
-        viewModel = factory.create(CurrentTempViewModel::class.java, CreationExtras.Empty)
-    }
+    private val viewModel: CurrentTempViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -3,6 +3,8 @@ package ru.fav.weatherapp.di.module
 import android.annotation.SuppressLint
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,6 +12,7 @@ import ru.fav.weatherapp.BuildConfig.OPEN_WEATHER_BASE_URL
 import ru.fav.weatherapp.data.mapper.WeatherResponseMapper
 import ru.fav.weatherapp.data.remote.OpenWeatherApi
 import ru.fav.weatherapp.data.remote.interceptors.AppIdInterceptor
+import ru.fav.weatherapp.data.remote.interceptors.LangInterceptor
 import ru.fav.weatherapp.data.repository.WeatherRepositoryImpl
 import ru.fav.weatherapp.domain.repository.WeatherRepository
 import java.security.SecureRandom
@@ -21,11 +24,13 @@ import javax.inject.Singleton
 
 
 @Module
+@InstallIn(SingletonComponent::class)
 class DataModule {
 
     @Provides
     fun provideOkHttpClient(
-        appIdInterceptor: AppIdInterceptor
+        appIdInterceptor: AppIdInterceptor,
+        langInterceptor: LangInterceptor
     ): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
         try {
@@ -60,7 +65,10 @@ class DataModule {
                 okHttpClient.hostnameVerifier { _, _ -> true }
             }
 
-            return okHttpClient.addInterceptor(appIdInterceptor).build()
+            return okHttpClient
+                .addInterceptor(appIdInterceptor)
+                .addInterceptor(langInterceptor)
+                .build()
         } catch (e: Exception) {
             return okHttpClient.addInterceptor(appIdInterceptor).build()
         }
